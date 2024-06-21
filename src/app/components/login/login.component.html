@@ -1,0 +1,32 @@
+<div class="form-container example-form mat-elevation-z5">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput [formControl]="emailControl" [errorStateMatcher]="matcher"
+                placeholder="Ex. pat@example.com">
+            <mat-icon class="material-icons-outlined" matSuffix>mail</mat-icon>
+            <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+            @if (emailControl.hasError('email') && !emailControl.hasError('required')) {
+            <mat-error>Please enter a valid email address</mat-error>
+            }
+            @if (emailControl.hasError('required')) {
+            <mat-error>Email is <strong>required</strong></mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Enter your password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <div class="center margin-top">
+            <button mat-raised-button color="primary" type="submit"> Login </button>
+        </div>
+        <span class="center margin-top text-center">New to our platform? <a class="sign-up-link"
+                [routerLink]="['/register']">signUp</a></span>
+    </form>
+</div>

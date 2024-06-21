@@ -1,0 +1,31 @@
+.form-container {
+    display: block;
+    min-width: 150px;
+    max-width: 300px;
+    width: 100%;
+    margin: auto;
+    padding: 48px;
+    border-radius: 16px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.margin-top {
+    margin-top: 16px;
+}
+
+.text-centre {
+    text-align: center;
+}
+
+.sign-up-link {
+    font-size: 1.2rem;
+    margin-left: 8px;
+}
+
+.example-full-width {
+    width: 100%;
+}

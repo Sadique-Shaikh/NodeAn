@@ -1,0 +1,134 @@
+<mat-toolbar color="basic">
+    <mat-toolbar-row>
+        <span>Registration Page</span>
+        <span class="example-spacer"></span>
+    </mat-toolbar-row>
+</mat-toolbar>
+<!-- ----------------------------------- -->
+
+<div class="form-container example-form mat-elevation-z5">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <!-- #1 -->
+        <div class="example-form-fields">
+            <mat-form-field class="example-full-width">
+                <mat-label>FirstName</mat-label>
+                <input matInput placeholder="FirstName" [formControl]="firstNameControl">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>LastName</mat-label>
+                <input matInput placeholder="LastName" [formControl]="lastNameControl">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-select placeholder="Gender" [formControl]="genderControl">
+                    <mat-option value="male">Male</mat-option>
+                    <mat-option value="female">Female</mat-option>
+                    <mat-option value="other">Other</mat-option>
+                </mat-select>
+                <mat-label>Gender</mat-label>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Contact Number</mat-label>
+                <input type="tel" matInput maxlength="10" minlength="10" pattern="[0-9]" placeholder="000-000-0000"
+                    [formControl]="phoneNoControl">
+                @if (phoneNoControl.hasError('required')) {
+                <mat-error>Phone Number is <strong>required</strong></mat-error>
+                }
+                <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>
+        </div>
+        <!-- #2 -->
+        <div class="example-form-fields">
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput [formControl]="emailControl" [errorStateMatcher]="matcher"
+                    placeholder="Ex. pat@example.com">
+                <mat-icon class="material-icons-outlined" matSuffix>mail</mat-icon>
+                <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                @if (emailControl.hasError('email') && !emailControl.hasError('required')) {
+                <mat-error>Please enter a valid email address</mat-error>
+                }
+                @if (emailControl.hasError('required')) {
+                <mat-error>Email is <strong>required</strong></mat-error>
+                }
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Designation</mat-label>
+                <input matInput placeholder="Designation" [formControl]="designationControl">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Date of Birth</mat-label>
+                <input matInput [matDatepicker]="picker" [formControl]="dobControl">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker">
+                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Populate Age per DOB</mat-label>
+                <input matInput type="number" placeholder="Populate Age" [formControl]="ageControl">
+            </mat-form-field>
+        </div>
+        <!-- #3 -->
+        <div class="example-form-fields">
+
+            <mat-form-field class="example-full-width">
+                <mat-select placeholder="Country" [formControl]="countryControl">
+                    <mat-option value="India">India</mat-option>
+                    <mat-option value="India1">India1</mat-option>
+                    <mat-option value="India2">India2</mat-option>
+                </mat-select>
+                <mat-label>Country</mat-label>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-select placeholder="State" [formControl]="stateControl">
+                    <mat-option value="maharashtra">maharashtra</mat-option>
+                    <mat-option value="uttrakhand">uttrakhand</mat-option>
+                    <mat-option value="kashmir">kashmir</mat-option>
+                </mat-select>
+                <mat-label>State</mat-label>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-select placeholder="City" [formControl]="cityControl">
+                    <mat-option value="mumbai">mumbai</mat-option>
+                    <mat-option value="thane">thane</mat-option>
+                    <mat-option value="palghar">palghar</mat-option>
+                </mat-select>
+                <mat-label>City</mat-label>
+            </mat-form-field>
+
+            <div class="form-group custom-file-upload">
+                <input type="file" id="file" (change)="onFileSelected($event)" accept="image/*" hidden>
+                <label for="file" class="upload-btn">Upload</label>
+            </div>
+
+        </div>
+        <!-- #4 -->
+        <div class="example-form-fields">
+            <mat-form-field class="example-full-width-4">
+                <mat-label>pinCode</mat-label>
+                <input matInput placeholder="PinCode" [formControl]="pinCodeControl">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width-4">
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" [formControl]="passwordControl">
+                @if (passwordControl.hasError('required')) {
+                <mat-error>Password is <strong>required</strong></mat-error>
+                }
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary" type="submit"> Save </button>
+    </form>
+</div>
